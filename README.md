@@ -11,3 +11,33 @@ Two sentences are similar if:
 2. sentence1[i] and sentence2[i] are similar.
 
 Notice that a word is always similar to itself, also notice that the similarity relation is transitive. For example, if the words a and b are similar, and the words b and c are similar, then a and c are similar.
+```java
+Example 1:
+
+Input: sentence1 = ["great","acting","skills"], sentence2 = ["fine","drama","talent"], similarPairs = [["great","good"],["fine","good"],["drama","acting"],["skills","talent"]]
+Output: true
+Explanation: The two sentences have the same length and each word i of sentence1 is also similar to the corresponding word in sentence2.
+
+Example 2:
+
+Input: sentence1 = ["I","love","leetcode"], sentence2 = ["I","love","onepiece"], similarPairs = [["manga","onepiece"],["platform","anime"],["leetcode","platform"],["anime","manga"]]
+Output: true
+Explanation: "leetcode" --> "platform" --> "anime" --> "manga" --> "onepiece".
+Since "leetcode is similar to "onepiece" and the first two words are the same, the two sentences are similar.
+
+Example 3:
+
+Input: sentence1 = ["I","love","leetcode"], sentence2 = ["I","love","onepiece"], similarPairs = [["manga","hunterXhunter"],["platform","anime"],["leetcode","platform"],["anime","manga"]]
+Output: false
+Explanation: "leetcode" is not similar to "onepiece".
+``` 
+
+### Constraints:
+
+1. 1 <= sentence1.length, sentence2.length <= 1000
+2. 1 <= sentence1[i].length, sentence2[i].length <= 20
+3. sentence1[i] and sentence2[i] consist of lower-case and upper-case English letters.
+4. 0 <= similarPairs.length <= 2000
+5. similarPairs[i].length == 2
+6. 1 <= xi.length, yi.length <= 20
+7. xi and yi consist of English letters.
