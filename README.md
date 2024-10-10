@@ -41,3 +41,40 @@ Explanation: "leetcode" is not similar to "onepiece".
 5. similarPairs[i].length == 2
 6. 1 <= xi.length, yi.length <= 20
 7. xi and yi consist of English letters.
+
+## Implementation :
+```java
+class Solution {
+    public boolean areSentencesSimilarTwo(String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {
+        if(sentence1.length != sentence2.length)
+          return false;
+        Map<String,Set<String>> map = new HashMap<>();
+        for(List<String> pair : similarPairs) {
+            String word1 = pair.get(0);
+            String word2 = pair.get(1);
+            map.putIfAbsent(word1, new HashSet<String>());
+            map.putIfAbsent(word2, new HashSet<String>());
+            map.get(word1).add(word2);
+            map.get(word2).add(word1);
+            Set<String> set1 = map.get(word1);
+            Set<String> set2 = map.get(word2);
+            Set<String> allDistinctWordsSet = new HashSet<>(set1);
+            allDistinctWordsSet.addAll(set2);
+            for(String word : allDistinctWordsSet) {
+                map.get(word).addAll(allDistinctWordsSet);
+                map.get(word).remove(word);
+            }
+        }
+        for(int i = 0; i < sentence1.length; i++) {
+            String word1 = sentence1[i], word2 = sentence2[i];
+            if(word1.equals(word2))
+              continue;
+            if(!map.containsKey(word1))
+              return false;
+            if(!map.get(word1).contains(word2))
+              return false;    
+        }
+        return true;
+    }
+}
+```
